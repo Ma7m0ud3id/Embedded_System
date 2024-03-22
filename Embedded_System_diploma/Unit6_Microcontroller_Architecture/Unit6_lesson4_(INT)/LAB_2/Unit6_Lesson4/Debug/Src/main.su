@@ -1,0 +1,8 @@
+main.c:53:6:init_AFIO	4	static
+main.c:57:6:clock	4	static
+main.c:63:6:init_GPIO	4	static
+main.c:70:6:init_intrrupt	4	static
+main.c:78:6:NVIC	4	static
+main.c:82:6:Toggel	16	static
+main.c:85:5:main	8	static
+main.c:100:6:EXTI0_IRQHandler	8	static

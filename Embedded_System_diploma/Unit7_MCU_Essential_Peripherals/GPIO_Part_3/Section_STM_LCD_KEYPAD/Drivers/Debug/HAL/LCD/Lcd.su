@@ -1,0 +1,9 @@
+Lcd.c:29:6:my_wait	24	static
+Lcd.c:35:6:LCD_lcd_kick	8	static
+Lcd.c:46:6:LCD_check_lcd_isbusy	8	static
+Lcd.c:126:6:Send_command	16	static
+Lcd.c:161:6:LCD_clear_screen	8	static
+Lcd.c:164:6:Lcd_init	8	static
+Lcd.c:245:6:LCD_WRITE_CHAR	16	static
+Lcd.c:269:6:gotoXY	16	static
+Lcd.c:283:6:LCD_Send_string	24	static

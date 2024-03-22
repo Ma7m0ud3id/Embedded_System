@@ -1,0 +1,695 @@
+
+Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003be  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000432  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000010  00800060  00800060  00000432  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000432  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000464  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000d8  00000000  00000000  000004a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000cdf  00000000  00000000  00000578  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007a4  00000000  00000000  00001257  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000059e  00000000  00000000  000019fb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000240  00000000  00000000  00001f9c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000484  00000000  00000000  000021dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000037e  00000000  00000000  00002660  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a8  00000000  00000000  000029de  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 68 01 	jmp	0x2d0	; 0x2d0 <__vector_1>
+   8:	0c 94 8f 01 	jmp	0x31e	; 0x31e <__vector_2>
+   c:	0c 94 b6 01 	jmp	0x36c	; 0x36c <__vector_3>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee eb       	ldi	r30, 0xBE	; 190
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 37       	cpi	r26, 0x70	; 112
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 5b 00 	call	0xb6	; 0xb6 <main>
+  8a:	0c 94 dd 01 	jmp	0x3ba	; 0x3ba <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <Get_LED_1>:
+#include "Keypad.h"
+#include "EXTI.h"
+EXTI_Typedef EXTI_con;
+
+void Get_LED_1(){
+	Toggel_PIN(PORTD,PIN5);
+  92:	65 e0       	ldi	r22, 0x05	; 5
+  94:	82 e3       	ldi	r24, 0x32	; 50
+  96:	90 e0       	ldi	r25, 0x00	; 0
+  98:	0e 94 cc 00 	call	0x198	; 0x198 <Toggel_PIN>
+  9c:	08 95       	ret
+
+0000009e <Get_LED_2>:
+	//_delay_ms(200);
+	//_delay_ms(2000);
+}
+void Get_LED_2(){
+	Toggel_PIN(PORTD,PIN6);
+  9e:	66 e0       	ldi	r22, 0x06	; 6
+  a0:	82 e3       	ldi	r24, 0x32	; 50
+  a2:	90 e0       	ldi	r25, 0x00	; 0
+  a4:	0e 94 cc 00 	call	0x198	; 0x198 <Toggel_PIN>
+  a8:	08 95       	ret
+
+000000aa <Get_LED_3>:
+	//_delay_ms(200);
+	//_delay_ms(2000);
+}
+void Get_LED_3(){
+	Toggel_PIN(PORTD,PIN7);
+  aa:	67 e0       	ldi	r22, 0x07	; 7
+  ac:	82 e3       	ldi	r24, 0x32	; 50
+  ae:	90 e0       	ldi	r25, 0x00	; 0
+  b0:	0e 94 cc 00 	call	0x198	; 0x198 <Toggel_PIN>
+  b4:	08 95       	ret
+
+000000b6 <main>:
+int main(void)
+{
+	
+	
+	
+	DIR_PIN(DDRD,PIN2,INPUT);
+  b6:	40 e0       	ldi	r20, 0x00	; 0
+  b8:	62 e0       	ldi	r22, 0x02	; 2
+  ba:	81 e3       	ldi	r24, 0x31	; 49
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	0e 94 af 00 	call	0x15e	; 0x15e <DIR_PIN>
+	DIR_PIN(DDRD,PIN3,INPUT);
+  c2:	40 e0       	ldi	r20, 0x00	; 0
+  c4:	63 e0       	ldi	r22, 0x03	; 3
+  c6:	81 e3       	ldi	r24, 0x31	; 49
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	0e 94 af 00 	call	0x15e	; 0x15e <DIR_PIN>
+	DIR_PIN(DDRB,PIN2,INPUT);
+  ce:	40 e0       	ldi	r20, 0x00	; 0
+  d0:	62 e0       	ldi	r22, 0x02	; 2
+  d2:	87 e3       	ldi	r24, 0x37	; 55
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+  d6:	0e 94 af 00 	call	0x15e	; 0x15e <DIR_PIN>
+	EXTI_con.EXTI_Name=INT0;
+  da:	c0 e6       	ldi	r28, 0x60	; 96
+  dc:	d0 e0       	ldi	r29, 0x00	; 0
+  de:	18 82       	st	Y, r1
+	EXTI_con.EXTI_Mode=logical;
+  e0:	11 e0       	ldi	r17, 0x01	; 1
+  e2:	19 83       	std	Y+1, r17	; 0x01
+	EXTI_con.EXTI_Function=Get_LED_1;
+  e4:	89 e4       	ldi	r24, 0x49	; 73
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	9b 83       	std	Y+3, r25	; 0x03
+  ea:	8a 83       	std	Y+2, r24	; 0x02
+	EXTI_INIT(&EXTI_con);
+  ec:	ce 01       	movw	r24, r28
+  ee:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <EXTI_INIT>
+	EXTI_con.EXTI_Name=INT1;
+  f2:	18 83       	st	Y, r17
+	EXTI_con.EXTI_Mode=rising;
+  f4:	83 e0       	ldi	r24, 0x03	; 3
+  f6:	89 83       	std	Y+1, r24	; 0x01
+	EXTI_con.EXTI_Function=Get_LED_2;
+  f8:	8f e4       	ldi	r24, 0x4F	; 79
+  fa:	90 e0       	ldi	r25, 0x00	; 0
+  fc:	9b 83       	std	Y+3, r25	; 0x03
+  fe:	8a 83       	std	Y+2, r24	; 0x02
+	EXTI_INIT(&EXTI_con);
+ 100:	ce 01       	movw	r24, r28
+ 102:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <EXTI_INIT>
+	EXTI_con.EXTI_Name=INT2;
+ 106:	82 e0       	ldi	r24, 0x02	; 2
+ 108:	88 83       	st	Y, r24
+	EXTI_con.EXTI_Mode=falling;
+ 10a:	89 83       	std	Y+1, r24	; 0x01
+	EXTI_con.EXTI_Function=Get_LED_3;
+ 10c:	85 e5       	ldi	r24, 0x55	; 85
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	9b 83       	std	Y+3, r25	; 0x03
+ 112:	8a 83       	std	Y+2, r24	; 0x02
+	EXTI_INIT(&EXTI_con);
+ 114:	ce 01       	movw	r24, r28
+ 116:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <EXTI_INIT>
+	DIR_PIN(DDRD,PIN5,OUTPUT);
+ 11a:	41 e0       	ldi	r20, 0x01	; 1
+ 11c:	65 e0       	ldi	r22, 0x05	; 5
+ 11e:	81 e3       	ldi	r24, 0x31	; 49
+ 120:	90 e0       	ldi	r25, 0x00	; 0
+ 122:	0e 94 af 00 	call	0x15e	; 0x15e <DIR_PIN>
+	DIR_PIN(DDRD,PIN6,OUTPUT);
+ 126:	41 e0       	ldi	r20, 0x01	; 1
+ 128:	66 e0       	ldi	r22, 0x06	; 6
+ 12a:	81 e3       	ldi	r24, 0x31	; 49
+ 12c:	90 e0       	ldi	r25, 0x00	; 0
+ 12e:	0e 94 af 00 	call	0x15e	; 0x15e <DIR_PIN>
+	DIR_PIN(DDRD,PIN7,OUTPUT);
+ 132:	41 e0       	ldi	r20, 0x01	; 1
+ 134:	67 e0       	ldi	r22, 0x07	; 7
+ 136:	81 e3       	ldi	r24, 0x31	; 49
+ 138:	90 e0       	ldi	r25, 0x00	; 0
+ 13a:	0e 94 af 00 	call	0x15e	; 0x15e <DIR_PIN>
+	Reset_PIN(PORTD,PIN5);
+ 13e:	65 e0       	ldi	r22, 0x05	; 5
+ 140:	82 e3       	ldi	r24, 0x32	; 50
+ 142:	90 e0       	ldi	r25, 0x00	; 0
+ 144:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <Reset_PIN>
+	Reset_PIN(PORTD,PIN6);
+ 148:	66 e0       	ldi	r22, 0x06	; 6
+ 14a:	82 e3       	ldi	r24, 0x32	; 50
+ 14c:	90 e0       	ldi	r25, 0x00	; 0
+ 14e:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <Reset_PIN>
+	Reset_PIN(PORTD,PIN7);
+ 152:	67 e0       	ldi	r22, 0x07	; 7
+ 154:	82 e3       	ldi	r24, 0x32	; 50
+ 156:	90 e0       	ldi	r25, 0x00	; 0
+ 158:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <Reset_PIN>
+ 15c:	ff cf       	rjmp	.-2      	; 0x15c <main+0xa6>
+
+0000015e <DIR_PIN>:
+void Toggel_PIN(uint8_t *PORTx,uint8_t pin){
+	*PORTx^=(1<<pin);
+}
+
+void Reset_Port(uint8_t *PORTx){
+	*PORTx&=~(uint8_t)(0xff);
+ 15e:	41 30       	cpi	r20, 0x01	; 1
+ 160:	61 f4       	brne	.+24     	; 0x17a <DIR_PIN+0x1c>
+ 162:	21 e0       	ldi	r18, 0x01	; 1
+ 164:	30 e0       	ldi	r19, 0x00	; 0
+ 166:	02 c0       	rjmp	.+4      	; 0x16c <DIR_PIN+0xe>
+ 168:	22 0f       	add	r18, r18
+ 16a:	33 1f       	adc	r19, r19
+ 16c:	6a 95       	dec	r22
+ 16e:	e2 f7       	brpl	.-8      	; 0x168 <DIR_PIN+0xa>
+ 170:	fc 01       	movw	r30, r24
+ 172:	30 81       	ld	r19, Z
+ 174:	23 2b       	or	r18, r19
+ 176:	20 83       	st	Z, r18
+ 178:	08 95       	ret
+ 17a:	41 11       	cpse	r20, r1
+ 17c:	0c c0       	rjmp	.+24     	; 0x196 <DIR_PIN+0x38>
+ 17e:	21 e0       	ldi	r18, 0x01	; 1
+ 180:	30 e0       	ldi	r19, 0x00	; 0
+ 182:	02 c0       	rjmp	.+4      	; 0x188 <DIR_PIN+0x2a>
+ 184:	22 0f       	add	r18, r18
+ 186:	33 1f       	adc	r19, r19
+ 188:	6a 95       	dec	r22
+ 18a:	e2 f7       	brpl	.-8      	; 0x184 <DIR_PIN+0x26>
+ 18c:	20 95       	com	r18
+ 18e:	fc 01       	movw	r30, r24
+ 190:	30 81       	ld	r19, Z
+ 192:	23 23       	and	r18, r19
+ 194:	20 83       	st	Z, r18
+ 196:	08 95       	ret
+
+00000198 <Toggel_PIN>:
+ 198:	21 e0       	ldi	r18, 0x01	; 1
+ 19a:	30 e0       	ldi	r19, 0x00	; 0
+ 19c:	02 c0       	rjmp	.+4      	; 0x1a2 <Toggel_PIN+0xa>
+ 19e:	22 0f       	add	r18, r18
+ 1a0:	33 1f       	adc	r19, r19
+ 1a2:	6a 95       	dec	r22
+ 1a4:	e2 f7       	brpl	.-8      	; 0x19e <Toggel_PIN+0x6>
+ 1a6:	fc 01       	movw	r30, r24
+ 1a8:	30 81       	ld	r19, Z
+ 1aa:	23 27       	eor	r18, r19
+ 1ac:	20 83       	st	Z, r18
+ 1ae:	08 95       	ret
+
+000001b0 <Reset_PIN>:
+}
+void Reset_PIN(uint8_t *PORTx,uint8_t pin){
+	 *PORTx&=~(uint8_t)(1<<pin);
+ 1b0:	21 e0       	ldi	r18, 0x01	; 1
+ 1b2:	30 e0       	ldi	r19, 0x00	; 0
+ 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <Reset_PIN+0xa>
+ 1b6:	22 0f       	add	r18, r18
+ 1b8:	33 1f       	adc	r19, r19
+ 1ba:	6a 95       	dec	r22
+ 1bc:	e2 f7       	brpl	.-8      	; 0x1b6 <Reset_PIN+0x6>
+ 1be:	20 95       	com	r18
+ 1c0:	fc 01       	movw	r30, r24
+ 1c2:	30 81       	ld	r19, Z
+ 1c4:	23 23       	and	r18, r19
+ 1c6:	20 83       	st	Z, r18
+ 1c8:	08 95       	ret
+
+000001ca <Get_index>:
+/********************************************************************
+                                 Local Function
+*********************************************************************/
+uint8_t Get_index(EXTI_Typedef* EXTIx){
+	uint8_t index;
+	if(EXTIx->EXTI_Name==INT0){
+ 1ca:	fc 01       	movw	r30, r24
+ 1cc:	80 81       	ld	r24, Z
+ 1ce:	88 23       	and	r24, r24
+ 1d0:	29 f0       	breq	.+10     	; 0x1dc <Get_index+0x12>
+		index=0;
+		return (uint8_t)index;
+		
+	}else if(EXTIx->EXTI_Name==INT1){
+ 1d2:	81 30       	cpi	r24, 0x01	; 1
+ 1d4:	29 f0       	breq	.+10     	; 0x1e0 <Get_index+0x16>
+		index=1;
+	     return (uint8_t)index;
+		
+	}else if(EXTIx->EXTI_Name==INT2){
+ 1d6:	82 30       	cpi	r24, 0x02	; 2
+ 1d8:	29 f4       	brne	.+10     	; 0x1e4 <Get_index+0x1a>
+ 1da:	08 95       	ret
+*********************************************************************/
+uint8_t Get_index(EXTI_Typedef* EXTIx){
+	uint8_t index;
+	if(EXTIx->EXTI_Name==INT0){
+		index=0;
+		return (uint8_t)index;
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+ 1de:	08 95       	ret
+		
+	}else if(EXTIx->EXTI_Name==INT1){
+		index=1;
+	     return (uint8_t)index;
+ 1e0:	81 e0       	ldi	r24, 0x01	; 1
+ 1e2:	08 95       	ret
+	}else if(EXTIx->EXTI_Name==INT2){
+		index=2;
+		 return (uint8_t)index;
+	}else{
+		index=0;
+		return (uint8_t)index;
+ 1e4:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+ 1e6:	08 95       	ret
+
+000001e8 <EXTI_INIT>:
+
+
+/********************************************************************
+                                 API
+*********************************************************************/
+void EXTI_INIT(EXTI_Typedef* EXTIx){
+ 1e8:	cf 93       	push	r28
+ 1ea:	df 93       	push	r29
+ 1ec:	ec 01       	movw	r28, r24
+	uint8_t index;
+	 index=Get_index( EXTIx);
+ 1ee:	0e 94 e5 00 	call	0x1ca	; 0x1ca <Get_index>
+	
+	
+	EXTI_config[index]=*EXTIx;
+ 1f2:	90 e0       	ldi	r25, 0x00	; 0
+ 1f4:	fc 01       	movw	r30, r24
+ 1f6:	ee 0f       	add	r30, r30
+ 1f8:	ff 1f       	adc	r31, r31
+ 1fa:	ee 0f       	add	r30, r30
+ 1fc:	ff 1f       	adc	r31, r31
+ 1fe:	ec 59       	subi	r30, 0x9C	; 156
+ 200:	ff 4f       	sbci	r31, 0xFF	; 255
+ 202:	48 81       	ld	r20, Y
+ 204:	59 81       	ldd	r21, Y+1	; 0x01
+ 206:	6a 81       	ldd	r22, Y+2	; 0x02
+ 208:	7b 81       	ldd	r23, Y+3	; 0x03
+ 20a:	40 83       	st	Z, r20
+ 20c:	51 83       	std	Z+1, r21	; 0x01
+ 20e:	62 83       	std	Z+2, r22	; 0x02
+ 210:	73 83       	std	Z+3, r23	; 0x03
+	Register is cleared, none of the interrupts are enabled independent of the individual interrupt
+	enable settings. The I-bit is cleared by hardware after an interrupt has occurred, and is set by
+	the RETI instruction to enable subsequent interrupts. The I-bit can also be set and cleared by
+	the application with the SEI and CLI instructions, as described in the instruction set reference.
+	*/
+	*SREG|=(1<<7);
+ 212:	2f b7       	in	r18, 0x3f	; 63
+ 214:	20 68       	ori	r18, 0x80	; 128
+ 216:	2f bf       	out	0x3f, r18	; 63
+	
+	
+	
+	if(EXTI_config[index].EXTI_Name==INT0){
+ 218:	20 81       	ld	r18, Z
+ 21a:	21 11       	cpse	r18, r1
+ 21c:	20 c0       	rjmp	.+64     	; 0x25e <EXTI_INIT+0x76>
+	//• Bit 6 – INT0: External Interrupt Request 0 Enable
+	*GICR|=(1<<6);
+ 21e:	2b b7       	in	r18, 0x3b	; 59
+ 220:	20 64       	ori	r18, 0x40	; 64
+ 222:	2b bf       	out	0x3b, r18	; 59
+	1 0 The falling edge of INT0 generates an interrupt request.
+	1 1 The rising edge of INT0 generates an interrupt request.
+	*/
+	//x=EXTI_config[index]->EXTI_Mode;
+	
+	if(EXTI_config[index].EXTI_Mode==logical){
+ 224:	88 0f       	add	r24, r24
+ 226:	99 1f       	adc	r25, r25
+ 228:	88 0f       	add	r24, r24
+ 22a:	99 1f       	adc	r25, r25
+ 22c:	fc 01       	movw	r30, r24
+ 22e:	ec 59       	subi	r30, 0x9C	; 156
+ 230:	ff 4f       	sbci	r31, 0xFF	; 255
+ 232:	81 81       	ldd	r24, Z+1	; 0x01
+ 234:	81 30       	cpi	r24, 0x01	; 1
+ 236:	21 f4       	brne	.+8      	; 0x240 <EXTI_INIT+0x58>
+			*MCUCR|=(0b01<<0);
+ 238:	85 b7       	in	r24, 0x35	; 53
+ 23a:	81 60       	ori	r24, 0x01	; 1
+ 23c:	85 bf       	out	0x35, r24	; 53
+ 23e:	45 c0       	rjmp	.+138    	; 0x2ca <EXTI_INIT+0xe2>
+	 }else if(EXTI_config[index].EXTI_Mode==low_level){
+ 240:	81 11       	cpse	r24, r1
+ 242:	03 c0       	rjmp	.+6      	; 0x24a <EXTI_INIT+0x62>
+	 *MCUCR|=(0b00<<0);
+ 244:	85 b7       	in	r24, 0x35	; 53
+ 246:	85 bf       	out	0x35, r24	; 53
+ 248:	40 c0       	rjmp	.+128    	; 0x2ca <EXTI_INIT+0xe2>
+		 
+	 }else if(EXTI_config[index].EXTI_Mode==falling){
+ 24a:	82 30       	cpi	r24, 0x02	; 2
+ 24c:	21 f4       	brne	.+8      	; 0x256 <EXTI_INIT+0x6e>
+		 *MCUCR|=(0b10<<0);
+ 24e:	85 b7       	in	r24, 0x35	; 53
+ 250:	82 60       	ori	r24, 0x02	; 2
+ 252:	85 bf       	out	0x35, r24	; 53
+ 254:	3a c0       	rjmp	.+116    	; 0x2ca <EXTI_INIT+0xe2>
+		 
+	 }else{
+		 *MCUCR|=(0b11<<0);
+ 256:	85 b7       	in	r24, 0x35	; 53
+ 258:	83 60       	ori	r24, 0x03	; 3
+ 25a:	85 bf       	out	0x35, r24	; 53
+ 25c:	36 c0       	rjmp	.+108    	; 0x2ca <EXTI_INIT+0xe2>
+		 
+	 }
+	   
+		
+		
+	}else if(EXTI_config[index].EXTI_Name==INT1){
+ 25e:	21 30       	cpi	r18, 0x01	; 1
+ 260:	01 f5       	brne	.+64     	; 0x2a2 <EXTI_INIT+0xba>
+	
+	//• Bit 7 – INT1: External Interrupt Request 1 Enable
+	*GICR|=(1<<7);
+ 262:	2b b7       	in	r18, 0x3b	; 59
+ 264:	20 68       	ori	r18, 0x80	; 128
+ 266:	2b bf       	out	0x3b, r18	; 59
+	0 0 The low level of INT1 generates an interrupt request.
+	0 1 Any logical change on INT1 generates an interrupt request.
+	1 0 The falling edge of INT1 generates an interrupt request.
+	1 1 The rising edge of INT1 generates an interrupt request.
+	*/
+	if(EXTI_config[index].EXTI_Mode==logical){
+ 268:	88 0f       	add	r24, r24
+ 26a:	99 1f       	adc	r25, r25
+ 26c:	88 0f       	add	r24, r24
+ 26e:	99 1f       	adc	r25, r25
+ 270:	fc 01       	movw	r30, r24
+ 272:	ec 59       	subi	r30, 0x9C	; 156
+ 274:	ff 4f       	sbci	r31, 0xFF	; 255
+ 276:	81 81       	ldd	r24, Z+1	; 0x01
+ 278:	81 30       	cpi	r24, 0x01	; 1
+ 27a:	21 f4       	brne	.+8      	; 0x284 <EXTI_INIT+0x9c>
+		*MCUCR|=(0b01<<2);
+ 27c:	85 b7       	in	r24, 0x35	; 53
+ 27e:	84 60       	ori	r24, 0x04	; 4
+ 280:	85 bf       	out	0x35, r24	; 53
+ 282:	23 c0       	rjmp	.+70     	; 0x2ca <EXTI_INIT+0xe2>
+	
+	
+	}else if(EXTI_config[index].EXTI_Mode==low_level){
+ 284:	81 11       	cpse	r24, r1
+ 286:	03 c0       	rjmp	.+6      	; 0x28e <EXTI_INIT+0xa6>
+		*MCUCR|=(0b00<<2);
+ 288:	85 b7       	in	r24, 0x35	; 53
+ 28a:	85 bf       	out	0x35, r24	; 53
+ 28c:	1e c0       	rjmp	.+60     	; 0x2ca <EXTI_INIT+0xe2>
+		
+		}else if(EXTI_config[index].EXTI_Mode==falling){
+ 28e:	82 30       	cpi	r24, 0x02	; 2
+ 290:	21 f4       	brne	.+8      	; 0x29a <EXTI_INIT+0xb2>
+		*MCUCR|=(0b10<<2);
+ 292:	85 b7       	in	r24, 0x35	; 53
+ 294:	88 60       	ori	r24, 0x08	; 8
+ 296:	85 bf       	out	0x35, r24	; 53
+ 298:	18 c0       	rjmp	.+48     	; 0x2ca <EXTI_INIT+0xe2>
+		
+		}else{
+		*MCUCR|=(0b11<<2);
+ 29a:	85 b7       	in	r24, 0x35	; 53
+ 29c:	8c 60       	ori	r24, 0x0C	; 12
+ 29e:	85 bf       	out	0x35, r24	; 53
+ 2a0:	14 c0       	rjmp	.+40     	; 0x2ca <EXTI_INIT+0xe2>
+	
+		
+	}else {
+	
+		//• Bit 5 – INT2: External Interrupt Request 2 Enable
+		*GICR|=(1<<5);
+ 2a2:	2b b7       	in	r18, 0x3b	; 59
+ 2a4:	20 62       	ori	r18, 0x20	; 32
+ 2a6:	2b bf       	out	0x3b, r18	; 59
+	the corresponding interrupt mask in GICR are set. If ISC2 is written to zero, a falling edge on
+	INT2 activates the interrupt. If ISC2 is written to one, a rising edge on INT2 activates the interrupt. Edges on INT2 are registered asynchronously. Pulses on INT2 wider than the minimum
+	pulse width given in
+	*/
+		
+	  if(EXTI_config[index].EXTI_Mode==falling){
+ 2a8:	88 0f       	add	r24, r24
+ 2aa:	99 1f       	adc	r25, r25
+ 2ac:	88 0f       	add	r24, r24
+ 2ae:	99 1f       	adc	r25, r25
+ 2b0:	fc 01       	movw	r30, r24
+ 2b2:	ec 59       	subi	r30, 0x9C	; 156
+ 2b4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2b6:	81 81       	ldd	r24, Z+1	; 0x01
+ 2b8:	82 30       	cpi	r24, 0x02	; 2
+ 2ba:	21 f4       	brne	.+8      	; 0x2c4 <EXTI_INIT+0xdc>
+			*MCUCSR &=~(1<<6);
+ 2bc:	84 b7       	in	r24, 0x34	; 52
+ 2be:	8f 7b       	andi	r24, 0xBF	; 191
+ 2c0:	84 bf       	out	0x34, r24	; 52
+ 2c2:	03 c0       	rjmp	.+6      	; 0x2ca <EXTI_INIT+0xe2>
+			
+		}else{
+			*MCUCSR |=(1<<6);
+ 2c4:	84 b7       	in	r24, 0x34	; 52
+ 2c6:	80 64       	ori	r24, 0x40	; 64
+ 2c8:	84 bf       	out	0x34, r24	; 52
+			
+		}
+	}
+	
+	
+}
+ 2ca:	df 91       	pop	r29
+ 2cc:	cf 91       	pop	r28
+ 2ce:	08 95       	ret
+
+000002d0 <__vector_1>:
+	
+	EXTI_config[index].EXTI_Function();
+	
+}*/
+void  __vector_1 (void) __attribute__((signal));
+void __vector_1 (void){
+ 2d0:	1f 92       	push	r1
+ 2d2:	0f 92       	push	r0
+ 2d4:	0f b6       	in	r0, 0x3f	; 63
+ 2d6:	0f 92       	push	r0
+ 2d8:	11 24       	eor	r1, r1
+ 2da:	2f 93       	push	r18
+ 2dc:	3f 93       	push	r19
+ 2de:	4f 93       	push	r20
+ 2e0:	5f 93       	push	r21
+ 2e2:	6f 93       	push	r22
+ 2e4:	7f 93       	push	r23
+ 2e6:	8f 93       	push	r24
+ 2e8:	9f 93       	push	r25
+ 2ea:	af 93       	push	r26
+ 2ec:	bf 93       	push	r27
+ 2ee:	ef 93       	push	r30
+ 2f0:	ff 93       	push	r31
+	EXTI_config[(uint8_t)0].EXTI_Function();
+ 2f2:	e0 91 66 00 	lds	r30, 0x0066	; 0x800066 <EXTI_config+0x2>
+ 2f6:	f0 91 67 00 	lds	r31, 0x0067	; 0x800067 <EXTI_config+0x3>
+ 2fa:	09 95       	icall
+}
+ 2fc:	ff 91       	pop	r31
+ 2fe:	ef 91       	pop	r30
+ 300:	bf 91       	pop	r27
+ 302:	af 91       	pop	r26
+ 304:	9f 91       	pop	r25
+ 306:	8f 91       	pop	r24
+ 308:	7f 91       	pop	r23
+ 30a:	6f 91       	pop	r22
+ 30c:	5f 91       	pop	r21
+ 30e:	4f 91       	pop	r20
+ 310:	3f 91       	pop	r19
+ 312:	2f 91       	pop	r18
+ 314:	0f 90       	pop	r0
+ 316:	0f be       	out	0x3f, r0	; 63
+ 318:	0f 90       	pop	r0
+ 31a:	1f 90       	pop	r1
+ 31c:	18 95       	reti
+
+0000031e <__vector_2>:
+
+void  __vector_2 (void) __attribute__((signal));
+void __vector_2 (void){
+ 31e:	1f 92       	push	r1
+ 320:	0f 92       	push	r0
+ 322:	0f b6       	in	r0, 0x3f	; 63
+ 324:	0f 92       	push	r0
+ 326:	11 24       	eor	r1, r1
+ 328:	2f 93       	push	r18
+ 32a:	3f 93       	push	r19
+ 32c:	4f 93       	push	r20
+ 32e:	5f 93       	push	r21
+ 330:	6f 93       	push	r22
+ 332:	7f 93       	push	r23
+ 334:	8f 93       	push	r24
+ 336:	9f 93       	push	r25
+ 338:	af 93       	push	r26
+ 33a:	bf 93       	push	r27
+ 33c:	ef 93       	push	r30
+ 33e:	ff 93       	push	r31
+	EXTI_config[(uint8_t)1].EXTI_Function();
+ 340:	e0 91 6a 00 	lds	r30, 0x006A	; 0x80006a <EXTI_config+0x6>
+ 344:	f0 91 6b 00 	lds	r31, 0x006B	; 0x80006b <EXTI_config+0x7>
+ 348:	09 95       	icall
+}
+ 34a:	ff 91       	pop	r31
+ 34c:	ef 91       	pop	r30
+ 34e:	bf 91       	pop	r27
+ 350:	af 91       	pop	r26
+ 352:	9f 91       	pop	r25
+ 354:	8f 91       	pop	r24
+ 356:	7f 91       	pop	r23
+ 358:	6f 91       	pop	r22
+ 35a:	5f 91       	pop	r21
+ 35c:	4f 91       	pop	r20
+ 35e:	3f 91       	pop	r19
+ 360:	2f 91       	pop	r18
+ 362:	0f 90       	pop	r0
+ 364:	0f be       	out	0x3f, r0	; 63
+ 366:	0f 90       	pop	r0
+ 368:	1f 90       	pop	r1
+ 36a:	18 95       	reti
+
+0000036c <__vector_3>:
+
+void  __vector_3 (void) __attribute__((signal));
+void __vector_3 (void){
+ 36c:	1f 92       	push	r1
+ 36e:	0f 92       	push	r0
+ 370:	0f b6       	in	r0, 0x3f	; 63
+ 372:	0f 92       	push	r0
+ 374:	11 24       	eor	r1, r1
+ 376:	2f 93       	push	r18
+ 378:	3f 93       	push	r19
+ 37a:	4f 93       	push	r20
+ 37c:	5f 93       	push	r21
+ 37e:	6f 93       	push	r22
+ 380:	7f 93       	push	r23
+ 382:	8f 93       	push	r24
+ 384:	9f 93       	push	r25
+ 386:	af 93       	push	r26
+ 388:	bf 93       	push	r27
+ 38a:	ef 93       	push	r30
+ 38c:	ff 93       	push	r31
+	EXTI_config[(uint8_t)2].EXTI_Function();
+ 38e:	e0 91 6e 00 	lds	r30, 0x006E	; 0x80006e <EXTI_config+0xa>
+ 392:	f0 91 6f 00 	lds	r31, 0x006F	; 0x80006f <EXTI_config+0xb>
+ 396:	09 95       	icall
+}
+ 398:	ff 91       	pop	r31
+ 39a:	ef 91       	pop	r30
+ 39c:	bf 91       	pop	r27
+ 39e:	af 91       	pop	r26
+ 3a0:	9f 91       	pop	r25
+ 3a2:	8f 91       	pop	r24
+ 3a4:	7f 91       	pop	r23
+ 3a6:	6f 91       	pop	r22
+ 3a8:	5f 91       	pop	r21
+ 3aa:	4f 91       	pop	r20
+ 3ac:	3f 91       	pop	r19
+ 3ae:	2f 91       	pop	r18
+ 3b0:	0f 90       	pop	r0
+ 3b2:	0f be       	out	0x3f, r0	; 63
+ 3b4:	0f 90       	pop	r0
+ 3b6:	1f 90       	pop	r1
+ 3b8:	18 95       	reti
+
+000003ba <_exit>:
+ 3ba:	f8 94       	cli
+
+000003bc <__stop_program>:
+ 3bc:	ff cf       	rjmp	.-2      	; 0x3bc <__stop_program>
