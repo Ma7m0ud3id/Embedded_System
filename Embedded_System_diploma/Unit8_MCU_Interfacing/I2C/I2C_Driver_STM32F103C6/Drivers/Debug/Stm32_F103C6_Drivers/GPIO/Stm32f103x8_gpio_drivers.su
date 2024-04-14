@@ -1,0 +1,9 @@
+Stm32f103x8_gpio_drivers.c:12:9:get_pin	16	static
+Stm32f103x8_gpio_drivers.c:91:6:GPIOx_init	32	static
+Stm32f103x8_gpio_drivers.c:149:6:GPIOx_deinit	16	static
+Stm32f103x8_gpio_drivers.c:190:9:GPIOx_READ_PIN	24	static
+Stm32f103x8_gpio_drivers.c:212:10:GPIOx_READ_PORT	24	static
+Stm32f103x8_gpio_drivers.c:228:6:GPIOx_WRITE_PIN	16	static
+Stm32f103x8_gpio_drivers.c:258:6:GPIOx_WRITE_PORT	16	static
+Stm32f103x8_gpio_drivers.c:270:6:GPIOx_TOGGELE_PIN	16	static
+Stm32f103x8_gpio_drivers.c:283:9:GPIOx_LOKE_PIN	24	static
