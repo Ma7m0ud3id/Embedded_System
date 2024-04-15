@@ -1,0 +1,9 @@
+main.c:81:6:TaskA_Fun	8	static
+main.c:88:6:TaskB_Fun	8	static
+main.c:95:6:OS_SVC_Services	24	static,ignoring_inline_asm
+main.c:116:6:OS_SVC_Set_First_Task	16	static,ignoring_inline_asm
+main.c:130:27:SVC_Handler	0	static,ignoring_inline_asm
+main.c:140:6:PendSV_Handler	4	static,ignoring_inline_asm
+main.c:158:6:Main_OS	8	static
+main.c:193:6:EXTI9_CallBack	4	static
+main.c:215:5:main	32	static

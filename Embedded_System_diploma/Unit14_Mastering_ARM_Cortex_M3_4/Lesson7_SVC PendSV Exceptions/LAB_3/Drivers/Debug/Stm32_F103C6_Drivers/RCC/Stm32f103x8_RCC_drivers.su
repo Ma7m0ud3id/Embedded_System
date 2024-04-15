@@ -1,0 +1,4 @@
+Stm32f103x8_RCC_drivers.c:16:10:MCAL_RCC_GET_SYSCLK	4	static
+Stm32f103x8_RCC_drivers.c:31:10:MCAL_RCC_GET_AHB	8	static
+Stm32f103x8_RCC_drivers.c:35:10:MCAL_RCC_GET_PCLK1	8	static
+Stm32f103x8_RCC_drivers.c:40:10:MCAL_RCC_GET_PCLK2	8	static
